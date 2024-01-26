@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raining Divs Animation</title>
+    <title>Lì xì may mắn 2024 by Anh nghiệp đẹp trai :)</title>
     <style>
         body,
         html {
+            background-color: rgb(247, 117, 117);
             height: 100%;
             margin: 0;
             overflow: hidden;
@@ -35,6 +36,18 @@
             100% {
                 transform: translateY(100vh);
                 opacity: 0;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateY(-3px);
+            }
+            50% {
+                transform: translateY(3px);
+            }
+            100% {
+                transform: translateY(-3px);
             }
         }
 
@@ -80,7 +93,7 @@
 </head>
 
 <body>
-    <audio id="audio" loop>
+    <audio id="audio" autoplay loop>
         <source src="./assets/video/NgayXuanLongPhungSumVay-VA-2712302.mp3" type="audio/mpeg">
     </audio>
     <div id="container"></div>
@@ -104,8 +117,6 @@
                 const item = document.createElement("div");
                 item.classList.add("item");
                 item.style.left = Math.random() * (window.innerWidth - 150) + "px"; // 150 is the width of the item
-                // Set random color
-                // item.style.backgroundColor = getRandomColor();
                 container.appendChild(item);
 
                 item.addEventListener("click", function () {
@@ -122,16 +133,7 @@
                 }, 5000);
             }
 
-            function getRandomColor() {
-                const letters = "0123456789ABCDEF";
-                let color = "#";
-                for (let i = 0; i < 6; i++) {
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
-            }
-
-            setInterval(createItem, 800);
+            setInterval(createItem, 200);
         });
 
         function closeModal(event) {
