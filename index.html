@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raining Divs Animation</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .item {
+            width: 80px;
+            height: 150px;
+            background-color: #f2f2f2;
+            margin: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            position: absolute;
+            animation: fall 5s linear infinite;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100%);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: white;
+            padding: 20px;
+            z-index: 1000;
+            animation: explode 0.5s ease-in-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .item {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Red_envelope_%E2%80%93_Phong_bao_l%C3%AC_x%C3%AC_m%E1%BB%ABng_tu%E1%BB%95i.pdf/page1-1666px-Red_envelope_%E2%80%93_Phong_bao_l%C3%AC_x%C3%AC_m%E1%BB%ABng_tu%E1%BB%95i.pdf.jpg');
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="audio" loop>
+        <source src="./assets/video/NgayXuanLongPhungSumVay-VA-2712302.mp3" type="audio/mpeg">
+    </audio>
+    <div id="container"></div>
+    <div class="overlay" id="overlay" onclick="closeModal(event)"></div>
+    <div class="modal" id="modal">
+        <p id="giftMessage"></p>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var audio = document.querySelector("audio");
+            audio.setAttribute("autoplay", "");
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.getElementById("container");
+            const gifts = ['100K', '200K', '300K', '400K', '500K', '600K', '700K', '800K', '900K', '1000k'];
+            let clickedOnOverlay = false;
+
+            function createItem() {
+                const item = document.createElement("div");
+                item.classList.add("item");
+                item.style.left = Math.random() * (window.innerWidth - 150) + "px"; // 150 is the width of the item
+                // Set random color
+                // item.style.backgroundColor = getRandomColor();
+                container.appendChild(item);
+
+                item.addEventListener("click", function () {
+                    const randomGiftIndex = Math.floor(Math.random() * gifts.length);
+                    document.getElementById("giftMessage").innerText = "Bạn đã nhận được phần quà: " + gifts[randomGiftIndex];
+                    document.getElementById("overlay").style.display = "block";
+                    document.getElementById("modal").style.display = "block";
+                    document.getElementById("modal").classList.remove("hide");
+                    clickedOnOverlay = false;
+                });
+
+                setTimeout(function () {
+                    container.removeChild(item);
+                }, 5000);
+            }
+
+            function getRandomColor() {
+                const letters = "0123456789ABCDEF";
+                let color = "#";
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            setInterval(createItem, 800);
+        });
+
+        function closeModal(event) {
+            if (event && event.target.id === "overlay") {
+                document.getElementById("modal").classList.add("hide");
+                setTimeout(() => {
+                    document.getElementById("overlay").style.display = "none";
+                    document.getElementById("modal").style.display = "none";
+                }, 50);
+            } else {
+                document.getElementById("modal").classList.add("hide");
+                setTimeout(() => {
+                    document.getElementById("modal").style.display = "none";
+                }, 500);
+            }
+        }
+    </script>
+</body>
+
+</html>
