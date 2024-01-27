@@ -29,27 +29,28 @@
 
         @keyframes fall {
             0% {
-                transform: translateY(-100%);
+                transform: translateY(-100%) rotateZ(-20deg);
                 opacity: 1;
             }
 
+            25% {
+                transform: translateY(25vh) rotateZ(30deg);
+            }
+
+            50% {
+                transform: translateY(50vh) rotateZ(-20deg);
+            }
+
+            75% {
+                transform: translateY(75vh) rotateZ(30deg);
+            }
+
             100% {
-                transform: translateY(100vh);
+                transform: translateY(100vh) rotateZ(-20deg);
                 opacity: 0;
             }
         }
 
-        @keyframes shake {
-            0% {
-                transform: translateY(-3px);
-            }
-            50% {
-                transform: translateY(3px);
-            }
-            100% {
-                transform: translateY(-3px);
-            }
-        }
 
         .overlay {
             display: none;
@@ -89,6 +90,20 @@
             background-size: cover;
             background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Red_envelope_%E2%80%93_Phong_bao_l%C3%AC_x%C3%AC_m%E1%BB%ABng_tu%E1%BB%95i.pdf/page1-1666px-Red_envelope_%E2%80%93_Phong_bao_l%C3%AC_x%C3%AC_m%E1%BB%ABng_tu%E1%BB%95i.pdf.jpg');
         }
+
+        @media screen and (min-width: 1025px) {
+            .item {
+                width: 80px;
+                height: 150px;
+            }
+        }
+
+        @media screen and (max-width: 720px) {
+            .item {
+                width: 50px;
+                height: 90px;
+            }
+        }
     </style>
 </head>
 
@@ -116,7 +131,12 @@
             function createItem() {
                 const item = document.createElement("div");
                 item.classList.add("item");
-                item.style.left = Math.random() * (window.innerWidth - 150) + "px"; // 150 is the width of the item
+
+                // Randomly choose left or right
+                const direction = Math.random() < 0.5 ? -0.5 : 0.5; // -1 for left, 1 for right
+                const position = Math.random() * (window.innerWidth - 150); // Initial horizontal position
+
+                item.style.left = position + "px";
                 container.appendChild(item);
 
                 item.addEventListener("click", function () {
@@ -128,12 +148,23 @@
                     clickedOnOverlay = false;
                 });
 
-                setTimeout(function () {
-                    container.removeChild(item);
-                }, 5000);
+                const moveInterval = setInterval(function () {
+                    const currentLeft = parseFloat(item.style.left);
+                    const nextLeft = currentLeft + 1 * direction; // Adjust speed here
+
+                    // Check if item reaches the edge of the window
+                    if (nextLeft < 0 || nextLeft + 80 > window.innerWidth) { // 80 is the width of the item
+                        clearInterval(moveInterval); // Stop moving
+                        container.removeChild(item); // Remove the item
+                    } else {
+                        item.style.left = nextLeft + "px";
+                    }
+                }, 10); // Adjust interval for smoother movement
             }
 
-            setInterval(createItem, 200);
+            // chỉnh tạo nhiều hay ít
+            setInterval(createItem, 500);
+
         });
 
         function closeModal(event) {
