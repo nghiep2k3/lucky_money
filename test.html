@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    ok
+
+    <script>
+        // xử lý call api
+        // promise xử lý các thao tác bất đồng bộ, trc khi có promise  thì có callback,
+        // code sâu sẽ khó nhìn, gây tình trạng callback heal
+        var promise = new Promise(
+            function (resolve, reject) {
+                resolve([
+                    {
+                        id: 1,
+                        name: "nghiep"
+                    }
+                ]);
+            }
+
+        );
+
+        promise
+            .then(function (x) {
+                console.log(x);
+            }
+            )
+            .catch(function (x) {
+                console.log("Fail");
+            }
+            )
+            .finally(function (x) {
+                console.log("Done");
+            }
+            )
+
+
+
+    </script>
+
+    <script>
+        // callback( là hàm, được truyền qua đối số)
+        /* 
+            callback nghĩa là tạo ra 2 hàm a, b
+            gọi nó => a(b)
+            nghĩa là gọi hàm b ở trong hàm a
+        */  
+
+        function myFunction(x){
+            // x() == myCallBack()
+            x(123);
+        }
+
+        function myCallBack(x){
+            console.log('value: ', x);
+        }
+
+        // Đây là callback
+        myFunction(myCallBack); // => type of của nó là function
+    </script>
+</body>
+
+</html>
