@@ -8,7 +8,7 @@
     <style>
         body,
         html {
-            background-color: rgb(247, 117, 117);
+            /* background-color: rgb(247, 117, 117); */
             height: 100%;
             margin: 0;
             overflow: hidden;
@@ -108,6 +108,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="./assets/css/firework.css">
 </head>
 
 <body>
@@ -118,6 +119,13 @@
     <div class="overlay" id="overlay" onclick="closeModal(event)"></div>
     <div class="modal" id="modal">
         <p id="giftMessage"></p>
+    </div>
+    <div class="modal2" id="modal2">
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -185,6 +193,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>
