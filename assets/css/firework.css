@@ -4,6 +4,7 @@
         #123;
     margin: 0;
     height: 100vh;
+    z-index: 990;
     overflow: hidden;
 }
 
@@ -163,39 +164,51 @@
 }
 
 .firework:nth-child(4) {
-    --x: 60vmin; /* Điều chỉnh vị trí cho pháo hoa thứ 4 */
+    --x: 60vmin;
+    /* Điều chỉnh vị trí cho pháo hoa thứ 4 */
 }
 
 .firework:nth-child(4),
 .firework:nth-child(4)::before,
 .firework:nth-child(4)::after {
-    --color1: red; /* Thay đổi màu sắc cho pháo hoa thứ 4 */
+    --color1: red;
+    /* Thay đổi màu sắc cho pháo hoa thứ 4 */
     --color2: orange;
     --color3: yellow;
     --color4: green;
     --color5: blue;
     --color6: purple;
-    --finalSize: 50vmin; /* Điều chỉnh kích thước cuối cùng cho pháo hoa thứ 4 */
-    left: 20%; /* Điều chỉnh vị trí cho pháo hoa thứ 4 */
-    top: 40%; /* Điều chỉnh vị trí cho pháo hoa thứ 4 */
-    animation-delay: -0.35s; /* Điều chỉnh thời gian trễ cho pháo hoa thứ 4 */
+    --finalSize: 80vmin;
+    /* Điều chỉnh kích thước cuối cùng cho pháo hoa thứ 4 */
+    left: 20%;
+    /* Điều chỉnh vị trí cho pháo hoa thứ 4 */
+    top: 30%;
+    /* Điều chỉnh vị trí cho pháo hoa thứ 4 */
+    animation-delay: -0.35s;
+    /* Điều chỉnh thời gian trễ cho pháo hoa thứ 4 */
 }
 
 .firework:nth-child(5) {
-    --x: -60vmin; /* Điều chỉnh vị trí cho pháo hoa thứ 5 */
+    --x: -60vmin;
+    /* Điều chỉnh vị trí cho pháo hoa thứ 5 */
 }
 
 .firework:nth-child(5),
 .firework:nth-child(5)::before,
 .firework:nth-child(5)::after {
-    --color1: cyan; /* Thay đổi màu sắc cho pháo hoa thứ 5 */
+    --color1: cyan;
+    /* Thay đổi màu sắc cho pháo hoa thứ 5 */
     --color2: lightcyan;
     --color3: lightblue;
     --color4: PaleTurquoise;
     --color5: SkyBlue;
     --color6: lavender;
-    --finalSize: 55vmin; /* Điều chỉnh kích thước cuối cùng cho pháo hoa thứ 5 */
-    left: 80%; /* Điều chỉnh vị trí cho pháo hoa thứ 5 */
-    top: 70%; /* Điều chỉnh vị trí cho pháo hoa thứ 5 */
-    animation-delay: -0.5s; /* Điều chỉnh thời gian trễ cho pháo hoa thứ 5 */
+    --finalSize: 55vmin;
+    /* Điều chỉnh kích thước cuối cùng cho pháo hoa thứ 5 */
+    left: 80%;
+    /* Điều chỉnh vị trí cho pháo hoa thứ 5 */
+    top: 70%;
+    /* Điều chỉnh vị trí cho pháo hoa thứ 5 */
+    animation-delay: -0.5s;
+    /* Điều chỉnh thời gian trễ cho pháo hoa thứ 5 */
 }
